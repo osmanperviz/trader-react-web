@@ -7,6 +7,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Sidenav from './components/Sidenav';
 import routes from "./routes";
 import themeDark from './assets/theme-dark';
+import MainLayout from './components/mainLayout';
 
   const getRoutes = (allRoutes) =>
     allRoutes.map((route) => {
@@ -28,15 +29,17 @@ function App() {
      <Sidenav
         color={"primary"}
         brand={"primary"}
-        brandName="Material Dashboard 2"
+        brandName="Duck Bot Trader"
         routes={routes}
         onMouseEnter={() => console.log("on mouse enter")}
         onMouseLeave={() => console.log("on mouse leave")}
-          />
-      <Routes>
-        {getRoutes(routes)}
-        <Route path="*" element={<Navigate to="/dashboard" />} />
-      </Routes>
+      />
+      <MainLayout>
+        <Routes>
+          {getRoutes(routes)}
+          <Route path="*" element={<Navigate to="/dashboard" />} />
+        </Routes>
+      </MainLayout>
     </ThemeProvider>
     
   );

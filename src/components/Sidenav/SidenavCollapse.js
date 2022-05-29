@@ -27,20 +27,35 @@ import MDBox from "../../baseComponents/MDBox";
 
 // Custom styles for the SidenavCollapse
 import {
-  // collapseItem,
-  // collapseIconBox,
+  collapseItem,
+  collapseIconBox,
   collapseIcon,
-  // collapseText,
+  collapseText,
 } from "./styles/sidenavCollapse";
 
 // Material Dashboard 2 React context
 
 function SidenavCollapse({ icon, name, active, ...rest }) {
 
+  const darkMode = true
+  const miniSidenav = false
+  const whiteSidenav = false
+  const transparentSidenav = false
+  const sidenavColor = "info"
+
   return (
     <ListItem component="li">
       <MDBox
         {...rest}
+        sx={(theme) =>
+          collapseItem(theme, {
+            active,
+            transparentSidenav,
+            whiteSidenav,
+            darkMode,
+            sidenavColor,
+          })
+        }
       >
         <ListItemIcon
         >
@@ -53,6 +68,14 @@ function SidenavCollapse({ icon, name, active, ...rest }) {
 
         <ListItemText
           primary={name}
+           sx={(theme) =>
+            collapseText(theme, {
+              miniSidenav,
+              transparentSidenav,
+              whiteSidenav,
+              active,
+            })
+          }
           
         />
       </MDBox>

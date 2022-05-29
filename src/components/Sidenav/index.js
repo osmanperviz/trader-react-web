@@ -45,13 +45,18 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
   const location = useLocation();
   const collapseName = location.pathname.replace("/", "");
 
-  let textColor = "inherit"
+  const darkMode = true
+  const miniSidenav = false
+  const whiteSidenav = false
+  const transparentSidenav = false
 
-  // if (transparentSidenav || (whiteSidenav && !darkMode)) {
-  //   textColor = "dark";
-  // } else if (whiteSidenav && darkMode) {
-  //   textColor = "inherit";
-  // }
+  let textColor = "white"
+
+  if (transparentSidenav || (whiteSidenav && !darkMode)) {
+    textColor = "dark";
+  } else if (whiteSidenav && darkMode) {
+    textColor = "inherit";
+  }
 
   // const closeSidenav = () => setMiniSidenav(dispatch, true);
 
@@ -121,7 +126,10 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
       returnValue = (
         <Divider
           key={key}
-          light={ true }
+          light={
+          (!darkMode && !whiteSidenav && !transparentSidenav) ||
+          (darkMode && !transparentSidenav && whiteSidenav)
+        }
         />
       );
     }
@@ -133,6 +141,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
     <SidenavRoot
       {...rest}
       variant="permanent"
+      ownerState={{ transparentSidenav, whiteSidenav, miniSidenav, darkMode }}
     >
       <MDBox pt={3} pb={1} px={4} textAlign="center">
         <MDBox
@@ -160,7 +169,10 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
         </MDBox>
       </MDBox>
       <Divider
-        light={ true }
+         light={
+          (!darkMode && !whiteSidenav && !transparentSidenav) ||
+          (darkMode && !transparentSidenav && whiteSidenav)
+        }
       />
       <List>{renderRoutes}</List>
     </SidenavRoot>
