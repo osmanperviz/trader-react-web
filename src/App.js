@@ -1,7 +1,11 @@
 
 import './App.css';
-import {Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
+import { ThemeProvider } from "@mui/material/styles"
+
+
 import routes from "./routes";
+import themeDark from './assets/theme-dark';
 
   const getRoutes = (allRoutes) =>
     allRoutes.map((route) => {
@@ -18,10 +22,12 @@ import routes from "./routes";
 
 function App() {
   return (
-    <Routes>
-      {getRoutes(routes)}
-      <Route path="*" element={<Navigate to="/dashboard" />} />
-    </Routes>
+    <ThemeProvider theme={themeDark}>
+      <Routes>
+        {getRoutes(routes)}
+        <Route path="*" element={<Navigate to="/dashboard" />} />
+      </Routes>
+    </ThemeProvider>
     
   );
 }
