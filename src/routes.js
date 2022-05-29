@@ -1,6 +1,7 @@
 import Icon from "@mui/material/Icon";
 
 
+
 const routes = [
     {
         type: "collapse",
@@ -8,7 +9,7 @@ const routes = [
         key: "dashboard",
         icon: <Icon fontSize="small">dashboard</Icon>,
         route: "/dashboard",
-        component: <>MY ass!</>,
+        component: "<p>Dashboard!<p/>"
     }
 ]
 
