@@ -4,7 +4,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles"
 import CssBaseline from "@mui/material/CssBaseline";
 
-
+import Sidenav from './components/Sidenav';
 import routes from "./routes";
 import themeDark from './assets/theme-dark';
 
@@ -25,6 +25,14 @@ function App() {
   return (
     <ThemeProvider theme={themeDark}>
       <CssBaseline />
+     <Sidenav
+        color={"primary"}
+        brand={"primary"}
+        brandName="Material Dashboard 2"
+        routes={routes}
+        onMouseEnter={() => console.log("on mouse enter")}
+        onMouseLeave={() => console.log("on mouse leave")}
+          />
       <Routes>
         {getRoutes(routes)}
         <Route path="*" element={<Navigate to="/dashboard" />} />
